@@ -10,6 +10,9 @@ public class LinkedList {
           public LL(int value) {
               this.value = value;
           }
+
+          public LL() {
+                       }
       }
 
     public void addNodFirst(int value){
@@ -65,4 +68,78 @@ public class LinkedList {
        currnode.next = nodeVal;
        return currnode;
     }
+
+    public LL deleteDuplicates(LL head) {
+        LL node  =  head;
+        LL prevnode = null;
+        while(node !=null){
+
+             if(prevnode== null){
+                 prevnode =  node;
+             }else {
+                 if(prevnode.value != node.value){
+                    prevnode.next = node;
+                    prevnode= prevnode.next;
+                 }else{
+                     prevnode.next = node.next;
+                 }
+
+             }
+
+            node = node.next;
+        }
+     return head;
+
+    }
+
+    public LL deleteDuplicates2(LL head) {
+        LL node  =  head;
+        while(node.next !=null){
+            if(node.value== node.next.value){
+                node.next =node.next.next;
+            }else {
+                node = node.next;
+            }
+
+        }
+        return head;
+
+    }
+
+    public LL mergeTwoLists(LL list1, LL list2) {
+        LL head = new LL();
+        LL returnList = head;
+
+        while(list1 != null || list2 != null){
+
+            if(list1 != null && list2 != null){
+                LL temp = new LL();
+                if(list1.value <= list2.value){
+                    temp = list1;
+                    list1 = list1.next;
+                }else{
+                    temp = list2;
+                    list2 = list2.next;
+                }
+                returnList = temp;
+                System.out.println(returnList.value);
+
+                returnList = returnList.next;
+            } else if(list1 == null){
+                returnList = list2;
+                break;
+            } else if(list2 == null){
+                returnList = list1;
+                break;
+            }
+
+
+        }
+
+        return returnList.next;
+    }
+
+
+
+
 }
