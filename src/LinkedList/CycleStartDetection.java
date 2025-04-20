@@ -36,7 +36,7 @@ public class CycleStartDetection {
         return second;
     }
 
-    public int getLength(LinkedListtemplate  slow, LinkedListtemplategit  fast){
+    public int getLength(LinkedListtemplate  slow, LinkedListtemplate  fast){
         int returnLength = 1;
         while(slow!= fast){
             slow = slow.next;
