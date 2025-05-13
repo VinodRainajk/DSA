@@ -1,17 +1,19 @@
 package src.trees;
 
+import org.w3c.dom.Node;
+
 public class PopulatingNextRightPointer {
+/*
+    public TreeNode connect(TreeNode root) {
 
-    public Node connect(Node root) {
-
-        Node levelNode = root;
+        TreeNode levelNode = root;
 
         if(root == null){
             return root;
         }
 
         while(levelNode.left != null){
-            Node currentNode = levelNode;
+            TreeNode currentNode = levelNode;
 
             while(currentNode!=null){
                 currentNode.left.next =  currentNode.right;
@@ -27,5 +29,5 @@ public class PopulatingNextRightPointer {
         return root;
     }
 
-
+*/
 }
