@@ -6,36 +6,49 @@ import java.util.*;
 public class BSTBuilder {
 
 
-    public static TreeNode insertIntoBST(TreeNode root, int val) {
-        if (root == null) return new TreeNode(val);
-        if (val < root.val) root.left = insertIntoBST(root.left, val);
-        else root.right = insertIntoBST(root.right, val);
-        return root;
-    }
+    public TreeNode buildTree(Integer[] values) {
+        if (values.length == 0) return null;
 
-    public static TreeNode buildBST(int[] values) {
-        TreeNode root = null;
-        for (int val : values) {
-            root = insertIntoBST(root, val);
+        TreeNode root = new TreeNode(values[0]);
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        int i = 1;
+        while (!queue.isEmpty() && i < values.length) {
+            TreeNode current = queue.poll();
+
+            if (values[i] != null) {
+                current.left = new TreeNode(values[i]);
+                queue.add(current.left);
+            }
+            i++;
+
+            if (i < values.length && values[i] != null) {
+                current.right = new TreeNode(values[i]);
+                queue.add(current.right);
+            }
+            i++;
         }
         return root;
     }
 
-    public static void inorderTraversal(TreeNode root) {
-        if (root != null) {
-            inorderTraversal(root.left);
-            System.out.print(root.val + " ");
-            inorderTraversal(root.right);
+    public void inorderTraversal(TreeNode node) {
+        if (node != null) {
+            inorderTraversal(node.left);
+            System.out.print(node.val + " ");
+            inorderTraversal(node.right);
         }
     }
 
     public static void main(String[] args) {
-        int[] values = {5, 3, 6, 2, 4, 1}; // Ignoring null values
-        TreeNode root = buildBST(values);
-        System.out.println("Inorder Traversal of BST:");
-        inorderTraversal(root);
-        KthSmallestElement cls = new KthSmallestElement();
-        System.out.println("out put is "+ cls.kthSmallest(root,3));
+        Integer[] values = {-1,-2,10,-6,null,-3,-6};
+        BSTBuilder builder = new BSTBuilder();
+        TreeNode root = builder.buildTree(values);
 
+        System.out.println("Inorder Traversal:");
+        builder.inorderTraversal(root);
+        BinaryTreeMaximumPathSum bst =  new BinaryTreeMaximumPathSum();
+        bst.maxPathSum(root);
     }
+
 }
