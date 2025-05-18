@@ -30,6 +30,5 @@ public class MaxPointFromCards {
         return maxSum;
     }
 
-    return maxSum;
-    }
+
 }
