@@ -41,14 +41,14 @@ public class BSTBuilder {
     }
 
     public static void main(String[] args) {
-        Integer[] values = {-1,-2,10,-6,null,-3,-6};
+        Integer[] values = {16,14,null,4,15,1};
         BSTBuilder builder = new BSTBuilder();
         TreeNode root = builder.buildTree(values);
 
         System.out.println("Inorder Traversal:");
         builder.inorderTraversal(root);
-        BinaryTreeMaximumPathSum bst =  new BinaryTreeMaximumPathSum();
-        bst.maxPathSum(root);
+        ClosestNodeQueries bst =  new ClosestNodeQueries();
+        bst.closestNodes(root,Arrays.asList(10));
     }
 
 }
