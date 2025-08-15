@@ -40,7 +40,7 @@ public class SurroundedRegions {
 
         }
 
-        for(int idx =0; idx < board[0].length; idx++){
+        for(int idx =0; idx < board.length; idx++){
             int jdx =0;
             if(board[idx][jdx]=='O' && !visited[idx][jdx]){
                 visited[idx][jdx] = true;
@@ -49,7 +49,7 @@ public class SurroundedRegions {
 
         }
 
-        for(int idx =0; idx < board[0].length; idx++){
+        for(int idx =0; idx < board.length; idx++){
             int jdx =board[0].length-1;
             if(board[idx][jdx]=='O' && !visited[idx][jdx]){
                 visited[idx][jdx] = true;
@@ -99,10 +99,10 @@ public class SurroundedRegions {
 
     public static void main(String[] args) {
         char[][] image = {
-                {'X','X','X','X'},
-                {'X','O','O','X'},
-                {'X','X','O','X'},
-                {'X','O','X','X'}
+                {'X','O','X','O','X','O'},
+                {'O','X','O','X','O','X'},
+                {'X','O','X','O','X','O'},
+                {'O','X','O','X','O','X'}
         };
 
         solve(image);
