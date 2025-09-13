@@ -20,6 +20,8 @@ public class WordLadder2 {
                 st.add(wordList[idx]);
             }
         }
+
+
         int level =0;
         List<String> usedArray = new ArrayList<>();
         while(!store.isEmpty()){
