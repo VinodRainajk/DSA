@@ -5,13 +5,19 @@ import java.util.List;
 import java.util.PriorityQueue;
 
 public class PrimsAlgorithm {
-    static class Pair{
+    static class Pair implements Comparable<Pair>{
         int node;
         int weight;
 
         public Pair(int node, int weight){
             this.node = node;
             this.weight = weight;
+        }
+
+        @Override
+        public int compareTo(Pair o) {
+            return Integer.compare(this.weight, o.weight);
+
         }
     }
 
@@ -32,7 +38,7 @@ public class PrimsAlgorithm {
         }
         boolean[] visited = new boolean[V];
         int sum = 0;
-        PriorityQueue<Pair> pq = new PriorityQueue<>((x,y)-> x.weight- y.weight);
+        PriorityQueue<Pair> pq = new PriorityQueue<>();
         pq.add(new Pair(0,0) );
 
         while(!pq.isEmpty()){

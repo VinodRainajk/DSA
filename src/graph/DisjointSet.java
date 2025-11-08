@@ -4,42 +4,45 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DisjointSet {
-    List<Integer> parent = new ArrayList<>();
     List<Integer> rank = new ArrayList<>();
+    List<Integer> parent = new ArrayList<>();
 
-    public DisjointSet(int nodes){
-      for(int idx =0; idx <= nodes; idx++){
-          parent.add(idx);
+    public DisjointSet(int length){
+      for(int idx =0; idx <= length; idx++){
           rank.add(0);
+          parent.add(idx);
       }
     }
 
-    public Integer findParent(Integer node){
-        if(node == parent.get(node)){
-            return node;
+    public int findParent(int value){
+        if(parent.get(value)==value){
+            return value;
         }
-        Integer ultimateParent= findParent(parent.get(node)); // need to do path compression so that i dont have to recompute again in next Iteration
-        parent.set(node,ultimateParent);
-        return ultimateParent;
+        int currentParent = parent.get(value);
+        int ultParent =  findParent(currentParent);
+        parent.set(currentParent,ultParent);
+        return ultParent;
     }
 
-    public void unionByRank(Integer node1, Integer node2){
-        Integer parent1 = findParent(node1);
-        Integer parent2 = findParent(node2);
-        if(parent1 != parent2){
-            if(rank.get(parent1) > rank.get(parent2)){
-                parent.set(parent2,parent1);
-            } else if (rank.get(parent1) < rank.get(parent2)) {
-                parent.set(parent1,parent2);
-            }else{
-                parent.set(parent2,parent1);
-                int rankValue = rank.get(parent1);
-                rankValue++;
-                rank.set(parent1,rankValue);
-            }
-        }
-    }
+    public void unionByRank(int val1, int val2 ){
+        int parent1 = findParent(val1);
+        int parent2=  findParent(val2);
 
+        if(rank.get(val1) > rank.get(val2)){
+            parent.set(val2,val1);
+
+        } else if (rank.get(val1) < rank.get(val2)) {
+            parent.set(val1,val2);
+        }
+        else{
+
+            int currentRank =   rank.get(val1);
+            currentRank = currentRank+1;
+            rank.set(val1, currentRank);
+            parent.set(val2,val1);
+        }
+
+    }
     public static void main(String[] args) {
         DisjointSet dsj = new DisjointSet(7);
         dsj.unionByRank(1,2);
